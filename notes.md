@@ -57,18 +57,34 @@ Facilitator - **ed_u.com/users/:id**
 - Courses View
   - As a facilitator, I want to have a button for creating a new course **ed_u.com/courses/new**
 
-## Associations
+## Models & Associations
 ---
+Department
+  - has_many :staff, class_name: "User"
+
 User
   - has_many :courses, foreign_key: "facilitator_id"
   - has_many :registrations, foreign_key: "learner_id"
   - has_many :enrollments, through: :registrations, source: :course
+  - has_many :subordinates, class_name: "User", foreign_key: "manager_id"
+  - belongs_to :supervisor, class_name: "User"
+  - belongs_to :department
 
 Course
   - belongs_to :facilitator, class_name: "User"
   - has_many :registrations
   - has_many :learners, through: :registrations, source: :learner
+  - has_many :sessions
 
 Registration
   - belongs_to :course
   - belongs_to :learner, class_name: "User"
+
+Session
+  - belongs_to :course
+
+Review
+
+Tag
+
+Course_Request
