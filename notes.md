@@ -74,16 +74,19 @@ Course
   - belongs_to :facilitator, class_name: "User"
   - has_many :registrations
   - has_many :learners, through: :registrations, source: :learner
-  - has_many :sessions
+  <!-- - has_many :sessions -->
+  - has_many :reviews, as: :reviewable
 
 Registration
   - belongs_to :course
   - belongs_to :learner, class_name: "User"
 
-Session
-  - belongs_to :course
+<!-- Session
+  - belongs_to :course -->
 
 Review
+  - belongs_to :reviewable, polymorphic: true
+  - belongs_to :reviewer, class_name: 'User', foreign_key: 'reviewer_id'
 
 Tag
 
