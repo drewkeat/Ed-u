@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
   resources :registrations
   resources :courses
   resources :departments, only: [:index, :show]
