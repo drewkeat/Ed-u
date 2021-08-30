@@ -63,7 +63,6 @@ Department
   - has_many :staff, class_name: "User"
 
 User
-**rails g resource User name email password:digest department:references supervisor_id:integer{foreign_key: true}**
   - has_many :courses, foreign_key: "facilitator_id"
   - has_many :registrations, foreign_key: "learner_id"
   - has_many :enrollments, through: :registrations, source: :course
