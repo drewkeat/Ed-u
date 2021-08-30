@@ -23,11 +23,11 @@ Confirm:
 - [ ] Limited logic in controllers
 - [ ] Views use helper methods if appropriate
 - [ ] Views use partials if appropriate
-
-## Narrative
 ---
+## Narrative
 
 Ed-u is a catalog of courses and sessions for professional development.  Users create an account as on of three types; learner, facilitator, or admin.  Learners can browse the catalog and register for courses.  Facilitators can create courses with a "pending approval" status, view course registrations, and view personal and course reviews.  Admin can approve proposed courses, and view course and subordinate facilitator reviews.
+
 ---
 ## Routes and Experience
 
@@ -38,17 +38,16 @@ User - **ed_u.com/users/:id**
 - Show View
   - As a user, I want to see a list of upcoming trainings/sessions
   - I want to see links for:
-  - Courses View
-    - Finding a course **edu.com/courses**
-      - Next to each course should be a button to enroll **edu.com/courses/:id/registrations/new**
-    - Unenrolling - **ed_u.com/users/:id/registrations/:id/destroy**
-    - Editing my profile **ed_u.com/users/:id/edit**
-    - Deleting my account **ed_u.com/users/:id/destroy**
-    - Logging out **ed_u.com/logout**
+  - Courses View **edu.com/courses**
+  - Unenrolling - **ed_u.com/users/:id/registrations/:id/destroy**
+  - Editing my profile **ed_u.com/users/:id/edit**
+  - Deleting my account **ed_u.com/users/:id/destroy**
+  - Logging out **ed_u.com/logout**
 
-Finding a Session - 
+Finding a Session - **edu.com/courses**
 - As a user, I want to see a list of all upcoming courses
-  - I want to be able to filter, or search by keywords
+- I want to be able to filter, or search by keywords
+- Next to each course should be a button to enroll **edu.com/courses/:id/registrations/new**
 
 Facilitator - **ed_u.com/users/:id**
 - Show view
@@ -56,9 +55,10 @@ Facilitator - **ed_u.com/users/:id**
   - As a facilitator, I want to have a button for creating a new course **ed_u.com/courses/new**
 - Courses View
   - As a facilitator, I want to have a button for creating a new course **ed_u.com/courses/new**
+---
 
 ## Models & Associations
----
+
 Department
   - has_many :staff, class_name: "User"
 
@@ -91,3 +91,53 @@ Review
 Tag
 
 Course_Request
+
+---
+## Schema
+
+Department
+  - name
+
+User
+  - name
+  - email
+  <!-- - password:digest -->
+  - department:references
+  - supervisor_id:integer *add index*
+  
+Registration
+  - learner_id:integer
+  - course:references
+  
+Course
+  - name
+  - description:text
+  <!-- - clock_hours:decimal{4-2} -->
+  <!-- - delivery_method -->
+  <!-- - intended_audience -->
+  <!-- - category:references -->
+  <!-- - location:references -->
+  - status
+  - facilitator_id:integer *add index*
+
+<!-- Session
+  - part:integer
+  - course:references
+  - start_time:datetime
+  - end_time:date_time -->
+
+<!-- Category
+  - name -->
+
+Review
+ - content:text
+ - reviewer_id:integer *add index?*
+ - reviewable_type:string
+ - reviewable_id:integer
+
+<!-- Tag
+  - name
+  - taggable_id:integer
+  - taggable_type:string -->
+
+---
