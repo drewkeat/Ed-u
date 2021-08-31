@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :password_digest
       t.references :department, foreign_key: true
       t.integer :supervisor_id, foreign_key: true
+      t.string :access
 
       t.timestamps
     end

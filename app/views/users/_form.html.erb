@@ -1,0 +1,37 @@
+<%= form_with model:@user do |f|%>
+    <div class="form-group">
+        <%= f.label :name%>
+        <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.label :email%>
+        <%= f.email_field :email, class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.label :password%>
+        <%= f.password_field :password, class: "form-control" %>
+    </div>
+        <%= f.fields_for :department do |dept| %>
+        <div class="form-group">
+            <%= dept.label :name%>
+            <%= dept.text_field :name, list: "department_select", class: "form-control", placeholder: "Enter department or school" %>
+            <datalist id = "department_select">
+                <% Department.all.each do |department| %>
+                    <option value = "<%= department.name %>">
+                <% end %>
+            </datalist>
+        </div>
+    <% end %>
+    <!-- if current user has 'admin' access -->
+    <!-- 
+    <%= f.fields_for :supervisor do |supervisor| %>
+        <div class="form-group">
+                <%= supervisor.label :name, "Supervisor" %>
+                <%= supervisor.collection_select :name, User.all.order(:name), :id, :name, {},{class: "form-control"} %>
+        </div>
+    <% end %>
+    -->
+    <div class="form-group">
+        <%= f.submit "Sign Up", class: "btn btn-primary" %>
+    </div>
+<% end %>

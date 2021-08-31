@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  # has_secure_password
+  has_secure_password
   belongs_to :department, optional: true
   # Self referential roles
   belongs_to :supervisor, class_name: "User", optional: true
@@ -12,5 +12,9 @@ class User < ApplicationRecord
   has_many :enrollments, through: :registrations, source: :course
   # As reviewer
   has_many :submitted_reviews, class_name: "Review", foreign_key: "reviewer_id"
+  # Allow Nested Form for Department
+  accepts_nested_attributes_for :department
+  accepts_nested_attributes_for :supervisor
+
 
 end
