@@ -15,6 +15,15 @@
 
   <body>
     <div class="container"  role="main">
+      <!-- display flash -->
+      <% if !flash.empty?%>
+        <% flash.each do |type, msg| %>  
+          <div class="type">
+            <p><%= msg %></p>
+          </div>
+        <% end%>
+      <% end %>
+
       <%= yield %>
     </div>
 

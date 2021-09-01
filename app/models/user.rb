@@ -16,5 +16,10 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :department
   accepts_nested_attributes_for :supervisor
 
+  def department_attributes=(department)
+    self.department = Department.find_or_create_by(name: department[:name])
+    self.save
+  end
+  private
 
 end
