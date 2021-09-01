@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'sessions#home'
-  get 'sessions/create', as: 'session_create'
-  get 'sessions/destroy', as: 'session_destroy'
+  post 'login', to: 'sessions#create'
+  get 'logout', to: 'sessions#destroy'
   resources :reviews
   resources :registrations
   resources :courses

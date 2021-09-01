@@ -1,7 +1,7 @@
 <h1 >Sessions#home</h1>
 
 <div class="form-signin">
-    <%= form_with model: @user do |f| %>
+    <%= form_with url: '/login' do |f| %>
         <div>
             <%= f.label :email%>
             <%= f.email_field :email, class: "form-control"%>
@@ -11,7 +11,7 @@
             <%= f.password_field :password, class: "form-control"%>
         </div>
         <div>
-            <%= f.submit 'Login', class: "btn btn-primary" %>
+            <%= f.submit 'Login', {url: login_path, class: "btn btn-primary"}%>
             <%= link_to "Create Account", new_user_path, class: "btn btn-primary" %>
         </div>
     <% end %>
