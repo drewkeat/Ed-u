@@ -15,6 +15,8 @@ class User < ApplicationRecord
   # Allow Nested Form for Department
   accepts_nested_attributes_for :department
   accepts_nested_attributes_for :supervisor
+  #validations
+  validates :email, uniqueness: true
 
   def department_attributes=(department)
     self.department = Department.find_or_create_by(name: department[:name])

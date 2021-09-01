@@ -13,7 +13,7 @@
         name: name,
         email: email,
         password: "password",
-        department_id: Department.create(name: Faker::Educator.subject).id
+        department_id: Department.find_or_create_by(name: Faker::Educator.subject).id
     }
     User.create(user)
 end

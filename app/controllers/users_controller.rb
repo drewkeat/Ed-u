@@ -15,7 +15,7 @@ class UsersController < ApplicationController
           session[:user_id] = @user.id
           redirect_to @user
         else
-          flash[:error] = "Something went wrong"
+          flash[:danger] = "Something went wrong"
           render 'new'
         end
     end
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
           flash[:success] = "User was successfully updated"
           redirect_to @user
         else
-          flash[:error] = "Something went wrong"
+          flash[:danger] = "Something went wrong"
           render 'edit'
         end
     end

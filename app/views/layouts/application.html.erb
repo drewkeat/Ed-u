@@ -18,7 +18,7 @@
       <!-- display flash -->
       <% if !flash.empty?%>
         <% flash.each do |type, msg| %>  
-          <div class="type">
+          <div class="alert alert-<%=type%>">
             <p><%= msg %></p>
           </div>
         <% end%>
