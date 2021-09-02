@@ -1,4 +1,4 @@
-<h1 >Sessions#home</h1>
+<h1 >Welcome to Ed-U</h1>
 
 <div class="form-signin">
     <%= form_with url: '/login' do |f| %>
@@ -11,8 +11,8 @@
             <%= f.password_field :password, class: "form-control"%>
         </div>
         <div>
-            <%= f.submit 'Login', {url: login_path, class: "btn btn-primary"}%>
-            <%= link_to "Create Account", new_user_path, class: "btn btn-primary" %>
+            <%= f.submit 'Login', {url: login_path, class: "btn btn-primary mt-2"}%>
+            <%= link_to "Create Account", new_user_path, class: "btn btn-primary mt-2" %>
         </div>
     <% end %>
 </div>

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :verify_access
+    
     def index
         @users = User.all
     end
@@ -41,6 +43,7 @@ class UsersController < ApplicationController
     
     
     private
+
     def user_params
         params.require(:user).permit(:name, :email, :password, :department_id, :supervisor_id, department_attributes:[:name])
     end
