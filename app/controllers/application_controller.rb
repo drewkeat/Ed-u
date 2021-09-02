@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :verify_access
+    helper_method :verify_access, :logged_in?
 
     def logged_in?
         !!session[:user_id]
@@ -10,7 +10,10 @@ class ApplicationController < ActionController::Base
     end
 
     def verify_access
-      flash[:danger] = "You must be logged in."; redirect_to root_path if !logged_in?
+      if !logged_in? 
+        flash[:danger] = "You must be logged in."
+        redirect_to root_path
+      end
     end
 
 end
