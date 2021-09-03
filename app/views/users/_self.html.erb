@@ -1,1 +1,20 @@
 <h1>Welcome <%= @user.name %></h1>
+<hr>
+<h3>Upcoming Courses</h3>
+<% @user.enrollments.each do |course| %>
+    <div class="card " style="width: 30rem">
+        <div class="card-header">
+            <h5 class="card-title text-center"><%= link_to course.name %></h5>
+        </div>
+        <div class="card-body">
+            Description: <br>
+            <p class="card-text color-gray"><i><%= course.description %></i></p>
+        </div>
+        <div class="card-footer d-flex justify-content-around">
+            <a href="#" class="btn btn-primary">Unenroll</a> <!-- how to delete? -->
+            <a href="#" class="btn btn-primary">Review Course</a>
+            <a href="#" class="btn btn-primary">Review Facilitator</a>
+        </div>
+    </div>
+    <br><br>
+<% end %>

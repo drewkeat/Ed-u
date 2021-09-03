@@ -1,0 +1,22 @@
+<h1>Ed-U Catalog</h1>
+
+<table class="table table-striped">
+  <thead class="bg-primary">
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Facilitator</th>
+      <th scope="col">Register</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @courses.each do |course|%>
+    <tr>
+      <th scope="row"><%=course.name%></th>
+      <td><%=course.description%></td>
+      <td><%=course.facilitator.name%></td>
+      <td><%= button_to "Register", registrations_path, params: {registration:{course_id: course.id, learner_id: current_user.id}} %>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
