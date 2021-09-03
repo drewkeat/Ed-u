@@ -28,6 +28,12 @@ class UsersController < ApplicationController
 
     def edit
         @user = User.find(params[:id])
+        if @user == current_user
+          render 'edit'
+        else
+          flash[:danger] = "You cannot edit another user's profile."
+          redirect_to @user
+        end
     end
 
     def update

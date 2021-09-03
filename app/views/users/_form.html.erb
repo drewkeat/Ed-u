@@ -13,7 +13,7 @@
     </div>
         <%= f.fields_for :department do |dept| %>
         <div class="form-group">
-            <%= dept.label :name%>
+            <%= dept.label :name, "Department" %>
             <%= dept.text_field :name, list: "department_select", class: "form-control", placeholder: "Enter department or school" %>
             <datalist id = "department_select">
                 <% Department.all.each do |department| %>
@@ -32,6 +32,6 @@
     <% end %>
     -->
     <div class="form-group">
-        <%= f.submit "Sign Up", class: "btn btn-primary" %>
+        <%= f.submit "Sign Up", class: "btn btn-primary mt-3" %>
     </div>
 <% end %>
