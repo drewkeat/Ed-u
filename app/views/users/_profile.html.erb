@@ -1,2 +1,33 @@
 <h1><%=@user.name%></h1>
 
+<div class="container">
+    <div class="row">
+        <% if !@user.courses.empty?%>
+            <div class="card col">
+                <div class="card-header">
+                    <strong>Upcoming Facilitations:</strong>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <% @user.courses.each do |course| %>
+                        <li><%= link_to course.name, course_path(course) %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+        <% end %>
+        
+        <div class="card col">
+            <div class="card-header">
+                <strong>Upcoming Enrollments:</strong>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <% @user.enrollments.each do |course| %>
+                    <li><%= link_to course.name, course_path(course) %></li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
