@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
         !!session[:user_id]
     end
 
+    def redirect_if_logged_in
+      if logged_in?
+        redirect_to user_path(current_user)
+      end
+    end
+
     def current_user
         User.find_by(id: session[:user_id])
     end

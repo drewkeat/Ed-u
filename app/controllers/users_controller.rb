@@ -1,14 +1,12 @@
 class UsersController < ApplicationController
   before_action :verify_access, except: [:new]
+  before_action :redirect_if_logged_in, only: [:new]
     
     def index
         @users = User.all
     end
     
     def new
-      if logged_in?
-        redirect_to user_path(current_user)
-      end
         @user = User.new
         @user.department = Department.new
     end

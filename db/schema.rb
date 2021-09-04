@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_08_30_041753) do
     t.string "password_digest"
     t.integer "department_id"
     t.integer "supervisor_id"
-    t.string "access"
+    t.string "access", default: "learner"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["department_id"], name: "index_users_on_department_id"

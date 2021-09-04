@@ -6,14 +6,23 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-5.times do 
-    name = Faker::Books::Dune.character
-    email = name.downcase.split(" ").join("_")+"@email.com"
-    user = {
-        name: name,
-        email: email,
-        password: "password",
-        department_id: Department.find_or_create_by(name: Faker::Educator.subject).id
-    }
-    User.create(user)
-end
+User.create(
+    name: "Administrator",
+    email: "admin@email.com",
+    password: "password",
+    access: "admin"
+)
+
+User.create(
+    name: "Facilitator",
+    email: "facilitator@email.com",
+    password: "password",
+    access: "facilitator"
+)
+
+User.create(
+    name: "Learner",
+    email: "learner@email.com",
+    password: "password",
+    access: "learner"
+)
