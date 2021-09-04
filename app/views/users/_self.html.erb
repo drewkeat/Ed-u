@@ -1,20 +1,24 @@
 <h1>Welcome <%= @user.name %></h1>
 <hr>
 <h3>Upcoming Courses</h3>
-<% @user.enrollments.each do |course| %>
-    <div class="card " style="width: 30rem">
-        <div class="card-header">
-            <h5 class="card-title text-center"><%= link_to course.name, course %></h5>
-        </div>
-        <div class="card-body">
-            Description: <br>
-            <p class="card-text color-gray"><i><%= course.description %></i></p>
-        </div>
-        <div class="card-footer d-flex justify-content-around">
-            <%= button_to "Unenroll", registration_path, method: :delete, params:{registration: {learner_id: @user.id, course_id: course.id}}, class: "btn btn-primary"%>
-            <a href="#" class="btn btn-primary">Review Course</a>
-            <a href="#" class="btn btn-primary">Review Facilitator</a>
-        </div>
+<div class="container">
+    <div class="row">
+        <% @user.enrollments.each do |course| %>
+            <div class="card m-1" style="width: 30rem">
+                <div class="card-header">
+                    <h5 class="card-title text-center"><%= link_to course.name, course %></h5>
+                </div>
+                <div class="card-body">
+                    Description: <br>
+                    <p class="card-text color-gray"><i><%= course.description %></i></p>
+                </div>
+                <div class="card-footer d-flex justify-content-around">
+                    <%= button_to "Unenroll", registration_path, method: :delete, params:{registration: {learner_id: @user.id, course_id: course.id}}, class: "btn btn-primary"%>
+                    <a href="#" class="btn btn-primary">Review Course</a>
+                    <a href="#" class="btn btn-primary">Review Facilitator</a>
+                </div>
+            </div>
+        <% end %>
+        <br>
     </div>
-    <br><br>
-<% end %>
+</div>
