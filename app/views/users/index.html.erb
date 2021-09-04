@@ -1,7 +1,12 @@
 <h1> Ed-U Users </h1>
 
 <% @users.each do |user| %>
-    <div>
-        <%= link_to user.name, user %> - Enrollments: <%= user.enrollments.count %>
+    <div class="mb-3">
+        <%= link_to user.name, user %> 
+        <%if user.access == "facilitator"%>
+        - Courses: <%= user.courses.count %>
+        <% end %>
+        - Enrollments: <%= user.enrollments.count %>
+        <%= link_to "Edit Account", edit_user_path(user), class: "btn btn-primary btn-sm ms-3"%>
     </div>
 <% end %>
