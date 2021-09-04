@@ -19,7 +19,9 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
 
   def department_attributes=(department)
-    self.department = Department.find_or_create_by(name: department[:name])
+    if !department[:name].empty?
+      self.department = Department.find_or_create_by(name: department[:name])
+    end
     self.save
   end
   private

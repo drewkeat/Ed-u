@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :verify_access, except: [:new]
+  before_action :verify_access, except: [:new, :create]
   before_action :redirect_if_logged_in, only: [:new]
     
     def index
