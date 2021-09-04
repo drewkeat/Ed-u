@@ -11,7 +11,9 @@
         <%= f.label :password%>
         <%= f.password_field :password, class: "form-control" %>
     </div>
-        <%= f.fields_for :department do |dept| %>
+    <!-- if current user has 'admin' access -->
+    <% if current_user.access == "admin" %>
+        <%= f.fields_for :department, @user.build_department do |dept| %>
         <div class="form-group">
             <%= dept.label :name, "Department" %>
             <%= dept.text_field :name, list: "department_select", class: "form-control", placeholder: "Enter department or school" %>
@@ -21,16 +23,14 @@
                 <% end %>
             </datalist>
         </div>
+        <% end %>
+        <%= f.fields_for :supervisor, @user.build_supervisor do |supervisor| %>
+            <div class="form-group">
+                    <%= supervisor.label :name, "Supervisor" %>
+                    <%= supervisor.collection_select :name, User.all.order(:name), :id, :name, {},{class: "form-control"} %>
+            </div>
+        <% end %>
     <% end %>
-    <!-- if current user has 'admin' access -->
-    <!-- 
-    <%= f.fields_for :supervisor do |supervisor| %>
-        <div class="form-group">
-                <%= supervisor.label :name, "Supervisor" %>
-                <%= supervisor.collection_select :name, User.all.order(:name), :id, :name, {},{class: "form-control"} %>
-        </div>
-    <% end %>
-    -->
     <div class="form-group">
         <%= f.submit submit_text, class: "btn btn-primary mt-3" %>
     </div>
