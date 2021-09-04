@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-    helper_method :logged_in?, :current_user
+    helper_method [:logged_in?, :current_user, :admin?, :facilitator?, :learner?]
+    include ApplicationHelper
 
     def logged_in?
         !!session[:user_id]
@@ -20,6 +21,18 @@ class ApplicationController < ActionController::Base
         flash[:danger] = "You must be logged in."
         redirect_to root_path
       end
+    end
+
+    def admin?
+      current_user.access == "admin"
+    end
+
+    def facilitator?
+        current_user.access == "facilitator"
+    end
+
+    def learner?
+        current_user.access == "learner"
     end
 
 end

@@ -12,7 +12,7 @@
         <%= f.password_field :password, class: "form-control" %>
     </div>
     <!-- if current user has 'admin' access -->
-    <% if admin? || @user == current_user %>
+    <% if admin? %>
         <%= f.fields_for :department, @user.build_department do |dept| %>
         <div class="form-group">
             <%= dept.label :name, "Department" %>
