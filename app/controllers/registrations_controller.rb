@@ -16,8 +16,9 @@ class RegistrationsController < ApplicationController
       end
 
     def destroy
-        @registration = Registration.find(params[:registration_id])
+        @registration = Registration.find_by(registration_params)
         @registration.delete
+        flash[:success] = "You have unenrolled from #{@registration.course.name}."
         redirect_to user_path(current_user)
     end
 
