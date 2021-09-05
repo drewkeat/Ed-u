@@ -3,11 +3,7 @@ class UsersController < ApplicationController
   before_action :redirect_if_logged_in, only: [:new]
     
     def index
-      if admin?
-        @users = User.all
-      else
-        redirect_to root_path
-      end
+      @users = User.all
     end
     
     def new
