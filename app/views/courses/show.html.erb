@@ -1,14 +1,25 @@
+<h1><%= @course.name %></h1>
+<hr>
 <div class="card">
     <div class="card-header">
-        <h1><%= @course.name %></h1>
-        <h3>Facilitator: <i><%=@course.facilitator.name%></i></h3>
+        <div class="row">
+            <div class="col">
+                <b>Facilitator:</b>
+                <h3><%= @course.facilitator.name %></h3>
+            </div>
+            <div class="col">
+                <b>Schedule:</b>
+                <h3><%= @course.display_schedule %></h3>
+            </div>
+        </div>
     </div>
-    <strong>Description:</strong><br>
-    <p><%= @course.description%></p>
+    <div class="card-body">
+        <%= @course.description %>
+    </div>
 </div>
 <hr>
 <!--display if admin or facilitator -->
-<h1>Participants:</h1>
+<h2>Roster:</h2>
 <ul>
     <% @course.learners.each do |learner| %>
         <li><%= link_to learner.name, learner %></li>
