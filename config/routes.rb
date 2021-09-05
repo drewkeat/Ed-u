@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root to: 'sessions#home'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  resources :reviews
+  resources :reviews, except: [:new]
+  post 'reviews/new', to: 'reviews#new', as: 'new_review'
   resources :registrations, only: [:create, :destroy]
   resources :courses
   resources :departments, only: [:index, :show]

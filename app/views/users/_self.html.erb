@@ -14,8 +14,8 @@
                 </div>
                 <div class="card-footer d-flex justify-content-around">
                     <%= button_to "Unenroll", registration_path, method: :delete, params:{registration: {learner_id: @user.id, course_id: course.id}}, class: "btn btn-primary"%>
-                    <a href="#" class="btn btn-primary">Review Course</a>
-                    <a href="#" class="btn btn-primary">Review Facilitator</a>
+                    <%= button_to "Review Course", new_review_path, params: {review:{reviewer_id: current_user.id, reviewable_type: course.class, reviewable_id: course.id}}, class: "btn btn-primary" %>
+                    <%= button_to "Review Facilitator", new_review_path, params: {review:{reviewer_id: current_user.id, reviewable_type: course.facilitator.class, reviewable_id: course.facilitator.id}}, class: "btn btn-primary" %>
                 </div>
             </div>
         <% end %>
