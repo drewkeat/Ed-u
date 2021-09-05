@@ -10,7 +10,8 @@
                 </div>
                 <div class="card-body">
                     Description: <br>
-                    <p class="card-text color-gray"><i><%= course.description %></i></p>
+                    <i><%= course.description %></i> <br>
+                    <b><%= course.display_schedule %></b>
                 </div>
                 <div class="card-footer d-flex justify-content-around">
                     <%= button_to "Unenroll", registration_path, method: :delete, params:{registration: {learner_id: @user.id, course_id: course.id}}, class: "btn btn-primary"%>

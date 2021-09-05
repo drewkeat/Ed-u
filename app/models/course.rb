@@ -17,4 +17,8 @@ class Course < ApplicationRecord
                 self.status = "pending"
         end
     end
+
+    def display_schedule
+        "#{self.start_time.strftime("%b %e, %l:%M %p")} - #{self.end_time.strftime("%l:%M %p")}"
+    end
 end
