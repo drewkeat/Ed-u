@@ -1,1 +1,16 @@
-<h1><%= @course.name %></h1>
+<div class="card">
+    <div class="card-header">
+        <h1><%= @course.name %></h1>
+        <h3>Facilitator: <i><%=@course.facilitator.name%></i></h3>
+    </div>
+    <strong>Description:</strong><br>
+    <p><%= @course.description%></p>
+</div>
+<hr>
+<!--display if admin or facilitator -->
+<h1>Participants:</h1>
+<ul>
+    <% @course.learners.each do |learner| %>
+        <li><%= link_to learner.name, learner %></li>
+    <% end %>
+</ul>
