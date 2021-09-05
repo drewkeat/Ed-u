@@ -72,12 +72,12 @@ def create_users
 end
 
 def create_courses
-
-    @c1 = Course.create(name: "Course One", description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur, amet dolor! Voluptatem nesciunt expedita, numquam veniam est, molestiae aut nihil dolor, quaerat magni minima earum natus asperiores eius! Dolore, praesentium.")
-    
-    @c2 = Course.create(name: "Course Two", description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur, amet dolor! Voluptatem nesciunt expedita, numquam veniam est, molestiae aut nihil dolor, quaerat magni minima earum natus asperiores eius! Dolore, praesentium.")
-    
-    @c3 = Course.create(name: "Course Three", description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur, amet dolor! Voluptatem nesciunt expedita, numquam veniam est, molestiae aut nihil dolor, quaerat magni minima earum natus asperiores eius! Dolore, praesentium.")
+    start_time = Time.now + 10.days
+    @c1 = Course.create(name: "Course One", description: Faker::Lorem.sentences(number: rand(1..10)).join(" "), start_time: start_time , end_time: start_time + rand(60..120).minutes)
+    start_time = Time.now - 10.days
+    @c2 = Course.create(name: "Course Two", description: Faker::Lorem.sentences(number: rand(1..10)).join(" "), start_time: start_time , end_time: start_time + rand(60..120).minutes)
+     start_time = Time.now + 3.days
+    @c3 = Course.create(name: "Course Three", description: Faker::Lorem.sentences(number: rand(1..10)).join(" "), start_time: start_time, end_time: start_time + rand(60..120).minutes)
 
     @f1.courses << @c1
     @f2.courses << @c2
