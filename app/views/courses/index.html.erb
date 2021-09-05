@@ -15,7 +15,11 @@
       <th scope="row"><%=course.name%></th>
       <td><%=course.description%></td>
       <td><%=course.facilitator.name%></td>
-      <td><%= button_to "Register", registrations_path, params: {registration:{course_id: course.id, learner_id: current_user.id}} %>
+      <td><%= button_to "Register", registrations_path, params: {registration:{course_id: course.id, learner_id: current_user.id}}, class: "btn btn-primary"  %>
+      <!-- display if current_user.status == facilitator || current_user.status == admin -->
+      <%= link_to "Edit", edit_course_path(course), class: "btn btn-primary mt-3" %>
+      <%= button_to "Delete", course_path(course), method: :delete, class: "btn btn-danger mt-3" %>
+      <!-- -->
     </tr>
     <%end%>
   </tbody>
