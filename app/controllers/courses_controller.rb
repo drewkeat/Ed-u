@@ -22,4 +22,10 @@ class CoursesController < ApplicationController
     def show
         @course = Course.find(params[:id])
     end
+
+    private
+
+    def course_params
+        params.require(:course).permit(:name, :description, :status, :facilitator_id, :start_time, :end_time)
+    end
 end

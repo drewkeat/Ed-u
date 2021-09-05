@@ -17,6 +17,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :supervisor
   #validations
   validates :email, uniqueness: true
+  #scopes
+  scope :facilitators, ->{where(access: "facilitator")}
 
   def department_attributes=(department)
     if !department[:name].empty?

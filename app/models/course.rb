@@ -5,4 +5,16 @@ class Course < ApplicationRecord
     has_many :reviews, as: :reviewable
     scope :upcoming, -> {where('start_time >= ?', Time.now).order(:start_time)}
     scope :past, -> {where('start_time <= ?', Time.now)}
+    before_save :convert_status
+
+    def convert_status
+        case self.status
+            when "1"
+                self.status = "approved"
+            when "0"
+                self.status = "denied"
+            else
+                self.status = "pending"
+        end
+    end
 end
