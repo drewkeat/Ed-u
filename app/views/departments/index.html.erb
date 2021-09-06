@@ -1,0 +1,29 @@
+<div class="row align-items-center">
+    <div class="col">
+        <h1>Ed-U Departments</h1>
+    </div>
+    <div class="col d-flex justify-content-md-end">
+        <%= link_to "New Department", new_department_path, class: "btn btn-primary ms-1" %>
+    </div>
+</div>
+<hr>
+<table class="table table-striped">
+  <thead class="bg-primary text-white text-center">
+    <tr>
+      <th scope="col">Department</th>
+      <th scope="col">Employees</th>
+      <th scope="col">Courses</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @departments.each do |department|%>
+    <tr>
+      <th scope="row" class="text-center"><%=link_to department.name, department%></th>
+      <td class="text-center"><%=department.staff.count%></td>
+      <td class="text-center"><%=department.courses.count%></td>
+      <td class="text-center"><%= button_to "Edit", edit_department_path(department), class: "btn btn-primary" %>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
