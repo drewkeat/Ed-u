@@ -12,11 +12,13 @@ class ReviewsController < ApplicationController
     end
     
     def new
-        if params[:user_id].present? && @reviewable = User.find(params[:user_id])
+        if params[:user_id].present? && reviewable = User.find(params[:user_id])
           @review = Review.new
+          @review.reviewable = reviewable
           render 'new'
-        elsif params[:course_id].present? && @reviewable = Course.find(params[:course_id])
-          @review =Review.new
+        elsif params[:course_id].present? && reviewable = Course.find(params[:course_id])
+          @review = Review.new
+          @review.reviewable = reviewable
           render 'new'
         else
           flash[:warning] = "Invalid request"
