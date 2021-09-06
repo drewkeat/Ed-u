@@ -1,7 +1,27 @@
 class ReviewsController < ApplicationController
     
+    def index
+      if params[:user_id].present? && @reviews = User.find(params[:user_id]).reviews
+        render 'index'
+      elsif params[:course_id].present? && @reviews = Course.find(params[:course_id]).reviews
+        render 'index'
+      else
+        flash[:warning] = "Invalid request"
+        redirect_to current_user
+      end
+    end
+    
     def new
-        @review = Review.new(review_params)
+        if params[:user_id].present? && @reviewable = User.find(params[:user_id])
+          @review = Review.new
+          render 'new'
+        elsif params[:course_id].present? && @reviewable = Course.find(params[:course_id])
+          @review =Review.new
+          render 'new'
+        else
+          flash[:warning] = "Invalid request"
+          redirect_to current_user
+        end
     end
     
     def create
