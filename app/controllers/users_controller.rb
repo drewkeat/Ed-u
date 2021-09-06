@@ -8,7 +8,6 @@ class UsersController < ApplicationController
     
     def new
         @user = User.new
-        @user.department = Department.new
     end
     
     def create
@@ -18,7 +17,7 @@ class UsersController < ApplicationController
           session[:user_id] = @user.id
           redirect_to @user
         else
-          flash[:danger] = "Something went wrong"
+          flash[:danger] = "Please correct the field(s) below."
           render 'new'
         end
     end

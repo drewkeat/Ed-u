@@ -17,6 +17,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :supervisor
   #validations
   validates :email, uniqueness: true
+  validates :name, :email, presence: true
   #scopes
   scope :facilitators, ->{where(access: "facilitator")}
 

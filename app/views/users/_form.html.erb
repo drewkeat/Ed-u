@@ -1,37 +1,38 @@
-<%= form_with model:@user do |f|%>
+<% invalid = ->(field_name) {@user.errors.include?(field_name)}%>
+<%= form_with model:@user do |f|%> 
     <div class="form-group">
         <%= f.label :name%>
-        <%= f.text_field :name, class: "form-control" %>
+        <%= f.text_field :name, class: "form-control #{'is-invalid' if invalid.(:name)}" %>
+            <% if invalid.(:name) %>
+                <div class="invalid-feedback d-block">
+                    <% @user.errors.full_messages_for(:name).each do |message| %>
+                        <%= message %>
+                    <% end %>
+                </div>
+            <% end %>
     </div>
     <div class="form-group">
         <%= f.label :email%>
-        <%= f.email_field :email, class: "form-control" %>
+        <%= f.email_field :email, class: "form-control #{'is-invalid' if invalid.(:email)}" %>
+           <% if invalid.(:email) %>
+                <div class="invalid-feedback d-block">
+                    <% @user.errors.full_messages_for(:email).each do |message| %>
+                        <%= message %>
+                    <% end %>
+                </div>
+            <% end %>
     </div>
     <div class="form-group">
         <%= f.label :password%>
-        <%= f.password_field :password, class: "form-control" %>
+        <%= f.password_field :password, class: "form-control #{'is-invalid' if invalid.(:password)}" %>
+           <% if invalid.(:password) %>
+                <div class="invalid-feedback d-block">
+                    <% @user.errors.full_messages_for(:password).each do |message| %>
+                        <%= message %>
+                    <% end %>
+                </div>
+            <% end %>
     </div>
-    <!-- if current user has 'admin' access -->
-    <% if admin? %>
-        <%= f.fields_for :department, @user.build_department do |dept| %>
-        <div class="form-group">
-            <%= dept.label :name, "Department" %>
-            <%= dept.text_field :name, list: "department_select", class: "form-control", placeholder: "Enter department or school" %>
-            <datalist id = "department_select">
-                <% Department.all.each do |department| %>
-                    <option value = "<%= department.name %>">
-                <% end %>
-            </datalist>
-        </div>
-        <% end %>
-        <%= f.fields_for :supervisor, @user.build_supervisor do |supervisor| %>
-            <div class="form-group">
-                    <%= supervisor.label :name, "Supervisor" %>
-                    <%= supervisor.collection_select :name, User.all.order(:name), :id, :name, {},{class: "form-control"} %>
-            </div>
-        <% end %>
-    <% end %>
-    <!-- -->
     <div class="form-group">
         <%= f.submit submit_text, class: "btn btn-primary mt-3" %>
     </div>
