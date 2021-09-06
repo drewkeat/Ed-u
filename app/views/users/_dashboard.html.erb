@@ -2,8 +2,8 @@
     <div class="col">
         <h1>Welcome <%= @user.name %></h1>
     </div>
-    <div class="col d-flex justify-content-end">
-        <%= link_to "Reviews", user_reviews_path(@user), class: "btn btn-primary ms-1" %>
+    <div class="col d-flex justify-content-md-end">
+        <%= link_to "Facilitation Reviews", user_reviews_path(@user), class: "btn btn-primary ms-1" %>
         <%= link_to "Employees", users_path, class: "btn btn-primary ms-1" %>
     </div>
 </div>
@@ -28,8 +28,8 @@
                             <%= button_to "Unenroll", registration_path, method: :delete, params:{registration: {learner_id: @user.id, course_id: course.id}}, class: "btn btn-primary"%>
                         </div>
                     </div>
+                <% end %>
             </div>
-            <% end %>
         </div>
         <div class="col-md card">
             <div class="card-header text-center text-white bg-primary"><h3>Past Courses</h3></div>
