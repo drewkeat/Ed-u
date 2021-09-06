@@ -19,7 +19,7 @@ class DepartmentsController < ApplicationController
     end
 
     def edit
-        @department = department.find(params[:id])
+        @department = Department.find(params[:id])
     end
     
     def update
@@ -44,5 +44,10 @@ class DepartmentsController < ApplicationController
         end
     end
     
+    private
+
+    def department_params
+        params.require(:department).permit(:name)
+    end
     
 end

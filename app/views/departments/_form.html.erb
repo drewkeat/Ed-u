@@ -1,0 +1,7 @@
+<%= form_with model: @department do |f| %>
+    <div class="form-group">
+        <%= f.label :name, "Department Name" %>
+        <%= f.text_field :name, class: "form-control"%>
+    </div>
+    <%= f.submit submit_text, class: "btn btn-primary mt-3" %>
+<% end %>

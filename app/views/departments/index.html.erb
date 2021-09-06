@@ -22,7 +22,7 @@
       <th scope="row" class="text-center"><%=link_to department.name, department%></th>
       <td class="text-center"><%=department.staff.count%></td>
       <td class="text-center"><%=department.courses.count%></td>
-      <td class="text-center"><%= button_to "Edit", edit_department_path(department), class: "btn btn-primary" %>
+      <td class="text-center"><%= link_to "Edit", edit_department_path(department), class: "btn btn-primary" %>
     </tr>
     <%end%>
   </tbody>
