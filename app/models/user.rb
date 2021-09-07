@@ -12,21 +12,12 @@ class User < ApplicationRecord
   has_many :enrollments, through: :registrations, source: :course
   # As reviewer
   has_many :submitted_reviews, class_name: "Review", foreign_key: "reviewer_id"
-  # Allow Nested Form for Department
-  accepts_nested_attributes_for :department
-  accepts_nested_attributes_for :supervisor
   #validations
   validates :email, uniqueness: true
   validates :name, :email, presence: true
   #scopes
   scope :facilitators, ->{where(access: "facilitator")}
 
-  def department_attributes=(department)
-    if !department[:name].empty?
-      self.department = Department.find_or_create_by(name: department[:name])
-    end
-    self.save
-  end
   private
 
 end

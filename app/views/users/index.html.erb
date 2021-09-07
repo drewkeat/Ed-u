@@ -1,12 +1,40 @@
-<h1> Ed-U Users </h1>
-
-<% @users.each do |user| %>
-    <div class="mb-3">
-        <%= link_to user.name, user %> 
-        <%if user.access == "facilitator"%>
-        - Courses: <%= user.courses.count %>
-        <% end %>
-        - Enrollments: <%= user.enrollments.count %>
-        <%= link_to "Edit Account", edit_user_path(user), class: "btn btn-primary btn-sm ms-3"%>
+<div class="row align-items-center">
+    <div class="col">
+        <h1>Ed-U Users</h1>
     </div>
-<% end %>
+    <div class="col d-flex justify-content-md-end">
+        <%= link_to "New User", new_user_path, class: "btn btn-primary ms-1" %>
+    </div>
+</div>
+<hr>
+<table class="table table-striped">
+  <thead class="bg-primary text-white text-center">
+    <tr>
+      <th scope="col">User</th>
+      <th scope="col">Department</th>
+      <th scope="col">Courses</th>
+      <th scope="col">Enrollments</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user|%>
+    <tr>
+      <th scope="row" class="text-center"><%=link_to user.name, user%></th>
+      <% if user.department %>
+        <td class="text-center"><%=link_to user.department.name, department_path(user.department)%></td>
+      <% else %>
+        <td class="text-center">
+            <%= form_with model: user do |f|%>
+                <%= f.collection_select(:department_id, Department.all, :id, :name) %> <br>
+                <%= f.submit "Assign Department"%>
+            <% end %>
+        </td>
+      <% end %>
+      <td class="text-center"><%=user.courses.count%></td>
+      <td class="text-center"><%=user.enrollments.count%></td>
+      <td class="text-center"><%= link_to "Edit", edit_user_path(user), class: "btn btn-primary" %>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
