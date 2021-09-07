@@ -8,20 +8,14 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item text-center">
-                        <%= link_to "Courses", courses_path, class: "nav-link" %>
-                    </li>
-                    <li class="nav-item text-center">
-                        <%= link_to "New Course", new_course_path, class: "nav-link" %>
-                    </li>
-                    <li class="nav-item text-center">
-                        <%= link_to "Users", users_path, class: "nav-link" %>
+                        <%= link_to "Course Catalog", courses_path, class: "nav-link" %>
                     </li>
                     <li class="nav-item text-center">
                         <%= link_to "Edit Profile", edit_user_path(current_user), class: "nav-link" %>
                     </li>
                 </ul>
             </div>
-            <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-link" %>
+            <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-primary text-white" %>
         <% end %>
     </div>
 </nav>

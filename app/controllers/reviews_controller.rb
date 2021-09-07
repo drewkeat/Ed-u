@@ -1,8 +1,8 @@
 class ReviewsController < ApplicationController
     
     def index
-      if params[:user_id].present? && @reviews = User.find(params[:user_id]).reviews
-        render 'index'
+      if params[:user_id].present? && @reviews = Review.facilitator(User.find(params[:user_id]))
+      render 'index'
       elsif params[:course_id].present? && @reviews = Course.find(params[:course_id]).reviews
         render 'index'
       else
