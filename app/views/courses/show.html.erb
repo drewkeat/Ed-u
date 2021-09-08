@@ -3,7 +3,9 @@
         <h1><%= @course.name %></h1>
     </div>
     <div class="col d-flex justify-content-md-end">
-        <!-- insert applicable buttons here-->
+        <% if (admin? || own?(@course.facilitator)) && @course.end_time < Time.now %>
+            <%= link_to "Course Reviews", course_reviews_path(@course), class: "btn btn-primary ms-1"%>
+        <% end %>
     </div>
 </div>
 <hr>

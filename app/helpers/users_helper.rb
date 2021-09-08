@@ -4,11 +4,16 @@ module UsersHelper
         case user.access
         when "admin"
             link_to("Employees", admin_users_path, class: "btn btn-primary ms-1") +
-            link_to("Facilitation Reviews", user_reviews_path(user), class: "btn btn-primary ms-1") +
             link_to("Facilitations", user_courses_path(user), class:"btn btn-primary ms-1")
         when "facilitator"
-            link_to("Facilitation Reviews", user_reviews_path(user), class: "btn btn-primary ms-1") +
-            link_to("Facilitations", user_courses_path(user), class:"btn btn-primary ms-1")
+            if admin?
+                link_to("Review this Employee", new_user_review_path(user), class: "btn btn-primary ms-1") +
+                link_to("Professional Reviews", user_reviews_path(user), class: "btn btn-primary ms-1") +
+                link_to("Facilitations", user_courses_path(user), class:"btn btn-primary ms-1")
+            else
+                link_to("Professional Reviews", user_reviews_path(user), class: "btn btn-primary ms-1") +
+                link_to("Facilitations", user_courses_path(user), class:"btn btn-primary ms-1")
+            end
         else
         end
     end

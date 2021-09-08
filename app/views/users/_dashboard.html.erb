@@ -44,7 +44,6 @@
                         </div>
                         <div class="card-footer d-sm-flex justify-content-around">
                             <%= link_to "Review Course", new_course_review_path(course.id), class: "btn btn-primary" %>
-                            <%= link_to "Review Facilitator", new_user_review_path(course.facilitator.id), params: {review:{reviewer_id: current_user.id, reviewable_type: course.facilitator.class, reviewable_id: course.facilitator.id}}, class: "btn btn-primary" %>
                         </div>
                     </div>
                 <% end %>

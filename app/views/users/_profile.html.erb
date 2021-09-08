@@ -1,5 +1,12 @@
-<h1><%=@user.name%></h1>
-
+<div class="row align-items-center">
+    <div class="col">
+        <h1><%= @user.name %></h1>
+    </div>
+    <div class="col d-flex justify-content-md-end">
+        <%= render_header_buttons(@user) %>
+    </div>
+</div>
+<hr>
 <div class="container">
     <div class="row">
         <% if !@user.courses.empty?%>

@@ -1,6 +1,6 @@
 <h1>Review <%= @review.reviewable.name %> </h1>
 
-<%= form_with model:@review do |f| %>
+<%= form_with model: @review do |f| %>
     <div class="form-group">
         <%= f.hidden_field :reviewer_id, value: current_user.id %>
         <%= f.hidden_field :reviewable_id, value: @review.reviewable.id %>
