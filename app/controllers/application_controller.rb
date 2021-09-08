@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method [:logged_in?, :current_user, :admin?, :facilitator?, :learner?]
+    helper_method [:logged_in?, :current_user, :admin?, :facilitator?, :own?]
     include ApplicationHelper
 
     def logged_in?
@@ -31,8 +31,8 @@ class ApplicationController < ActionController::Base
         current_user.access == "facilitator"
     end
 
-    def learner?
-        current_user.access == "learner"
+    def own?(user)
+        current_user == user
     end
 
 end
