@@ -8,7 +8,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item text-center">
+                        <%= link_to "Departments", departments_path, class: "nav-link"%>
+                    </li>
+            <!-- 
+                how to link for Employees index?
+            link_to("Employees", admin_users_path, class: "btn btn-primary ms-1")
+            -->
+                    <li class="nav-item text-center">
+                        <%= link_to "All Users", users_path, class: "nav-link"%>
+                    </li>
+                    <li class="nav-item text-center">
                         <%= link_to "Course Catalog", courses_path, class: "nav-link" %>
+                    </li>
+                    <li class="nav-item text-center">
+                        <%= link_to "Create a Course", new_course_path, class:"nav-link"%>
                     </li>
                     <li class="nav-item text-center">
                         <%= link_to "Edit Profile", edit_user_path(current_user), class: "nav-link" %>

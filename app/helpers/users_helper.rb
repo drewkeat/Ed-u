@@ -4,16 +4,12 @@ module UsersHelper
         case user.access
         when "admin"
             link_to("Facilitation Reviews", user_reviews_path(user), class: "btn btn-primary ms-1") +
-            link_to("Facilitations", user_courses_path(user), class:"btn btn-primary ms-1") +
-            link_to("Create a Course", new_course_path, class:"btn btn-primary ms-1") +
+            link_to("Facilitations", user_courses_path(user), class:"btn btn-primary ms-1")
             # how to link for Employees index?
             # link_to("Employees", admin_users_path, class: "btn btn-primary ms-1") +
-            link_to("All Users", users_path, class: "btn btn-primary ms-1") +
-            link_to("Departments", departments_path, class: "btn btn-primary ms-1")
         when "facilitator"
             link_to("Facilitation Reviews", user_reviews_path(user), class: "btn btn-primary ms-1") +
-            link_to("Facilitations", user_courses_path(user), class:"btn btn-primary ms-1") +
-            link_to("Create a Course", new_course_path, class:"btn btn-primary ms-1")
+            link_to("Facilitations", user_courses_path(user), class:"btn btn-primary ms-1")
         else
         end
     end
