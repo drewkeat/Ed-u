@@ -24,6 +24,12 @@ class UsersController < ApplicationController
     
     def show
         @user = User.find(params[:id])
+        if @user == current_user || current_user.access == "admin"
+          render 'show'
+        else
+          flash[:danger] = "You cannot view another user's profile."
+          redirect_to current_user
+        end
     end
 
     def edit
@@ -64,4 +70,5 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(:name, :email, :password, :department_id, :supervisor_id)
     end
+
 end
