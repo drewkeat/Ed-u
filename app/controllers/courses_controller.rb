@@ -1,7 +1,12 @@
 class CoursesController < ApplicationController
     def index
-        if params[:user_id] && (user = User.find(params[:user_id])) && (admin? || current_user == user)
-            @courses = Course.facilitations(user)
+        if params[:user_id] && (user = User.find(params[:user_id]))
+            if admin? || current_user == user
+                @courses = Course.facilitations(user)
+            else
+                flash[:danger] = "You cannot access another facilitator's courses."
+                redirect_to courses_path
+            end
         elsif admin?
             @courses = Course.all
         else
