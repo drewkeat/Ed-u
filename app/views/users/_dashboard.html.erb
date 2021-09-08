@@ -3,8 +3,7 @@
         <h1>Welcome <%= @user.name %></h1>
     </div>
     <div class="col d-flex justify-content-md-end">
-        <%= link_to "Facilitation Reviews", user_reviews_path(@user), class: "btn btn-primary ms-1" %>
-        <%= link_to "Employees", users_path, class: "btn btn-primary ms-1" %>
+        <%= render_header_buttons(@user) %>
     </div>
 </div>
 <hr>

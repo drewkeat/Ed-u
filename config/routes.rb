@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   resources :users do
-    resources :reviews 
+    resources :reviews, :courses
   end
   resources :registrations, only: [:create, :destroy]
   resources :courses do

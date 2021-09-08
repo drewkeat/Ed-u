@@ -1,6 +1,12 @@
 class CoursesController < ApplicationController
     def index
-        @courses = Course.all
+        if params[:user_id] && user = User.find(params[:user_id])
+            @courses = Course.facilitations(user)
+        elsif current_user.access == "admin"
+            @courses = Course.all
+        else
+            @courses = Course.approved
+        end
     end
 
     def new

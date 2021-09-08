@@ -19,7 +19,9 @@
 </div>
 <hr>
 <!--display if admin or facilitator -->
+<h3>Course Status: <i><%=@course.status%></i></h3>
 <h2>Roster:</h2>
+<!-- form for attendance -->
 <ul>
     <% @course.learners.each do |learner| %>
         <li><%= link_to learner.name, learner %></li>
