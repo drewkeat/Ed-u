@@ -1,9 +1,11 @@
 class ReviewsController < ApplicationController
     
     def index
-      if params[:user_id].present? && @reviews = User.find(params[:user_id]).reviews
-      render 'index'
-      elsif params[:course_id].present? && @reviews = Course.find(params[:course_id]).reviews
+      if params[:user_id].present? && (admin? || current_user == User.find(params[:user_id]))
+        @reviews = current_user.reviews
+        render 'index'
+      elsif params[:course_id].present? && (admin? || current_user.courses.include?(Course.find(params[:course_id])))
+        @reviews = Course.find(params[:course_id]).reviews
         render 'index'
       else
         flash[:warning] = "Invalid request"
