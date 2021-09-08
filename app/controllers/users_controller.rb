@@ -3,7 +3,11 @@ class UsersController < ApplicationController
   before_action :redirect_if_logged_in, only: [:new]
     
     def index
-      @users = User.all
+      if request.path == '/admin/users' && admin?
+        @users = current_user.subordinates
+      else
+        @users = User.all
+      end
     end
     
     def new
@@ -24,7 +28,7 @@ class UsersController < ApplicationController
     
     def show
         @user = User.find(params[:id])
-        if @user == current_user || current_user.access == "admin"
+        if @user == current_user || admin?
           render 'show'
         else
           flash[:danger] = "You cannot view another user's profile."

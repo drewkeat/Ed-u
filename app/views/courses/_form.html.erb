@@ -20,7 +20,7 @@
         <%= f.datetime_local_field :end_time, class: "form-control" %>
     </div>
     <!-- display if user is admin -->
-    <% if current_user.access == "admin" %>
+    <% if admin? %>
     <div class="form-group">
         <%= f.label :status, "Approved?" %>
         <%= f.check_box :status %>

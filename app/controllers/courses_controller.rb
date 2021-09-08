@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
     def index
         if params[:user_id] && user = User.find(params[:user_id])
             @courses = Course.facilitations(user)
-        elsif current_user.access == "admin"
+        elsif admin?
             @courses = Course.all
         else
             @courses = Course.approved
