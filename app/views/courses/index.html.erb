@@ -6,7 +6,7 @@
       <th scope="col">Title</th>
       <th scope="col">Description</th>
       <th scope="col">Facilitator</th>
-      <th scope="col">Register</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -15,11 +15,15 @@
       <th scope="row" class="text-center"><%=link_to course.name, course%></th>
       <td><%=course.description%></td>
       <td class="text-center"><%=course.facilitator.name%></td>
-      <td class="text-center"><%= button_to "Register", registrations_path, params: {registration:{course_id: course.id, learner_id: current_user.id}}, class: "btn btn-primary"  %>
+      <td class="text-center">
+      <% if !own?(course.facilitator) %>
+        <%= button_to "Register", registrations_path, params: {registration:{course_id: course.id, learner_id: current_user.id}}, class: "btn btn-primary"  %>
+      <% end %>
       <% if admin? || own?(course.facilitator)%>
         <%= link_to "Edit", edit_course_path(course), class: "btn btn-primary mt-3" %>
         <%= button_to "Delete", course_path(course), method: :delete, class: "btn btn-danger mt-3" %>
       <% end %>
+      </td>
     </tr>
     <%end%>
   </tbody>

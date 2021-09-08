@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
     def index
-        if params[:user_id] && user = User.find(params[:user_id])
+        if params[:user_id] && (user = User.find(params[:user_id])) && (admin? || current_user == user)
             @courses = Course.facilitations(user)
         elsif admin?
             @courses = Course.all
