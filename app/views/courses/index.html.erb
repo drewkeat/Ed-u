@@ -1,5 +1,14 @@
-<h1>Ed-U Catalog</h1>
-
+<div class="row align-items-center">
+    <div class="col">
+        <h1>Course Catalog</h1>
+    </div>
+    <div class="col d-flex justify-content-md-end">
+        <% if admin? || facilitator? %>
+          <%= link_to "Create a Course", new_course_path, class: "btn btn-primary ms-1" %>
+        <% end %>
+    </div>
+</div>
+<hr>
 <table class="table table-striped">
   <thead class="bg-primary text-white text-center">
     <tr>

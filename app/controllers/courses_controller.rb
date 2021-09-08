@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
         elsif admin?
             @courses = Course.all
         else
-            @courses = Course.approved
+            @courses = Course.approved.upcoming
         end
     end
 
