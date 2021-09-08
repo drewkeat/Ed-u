@@ -33,7 +33,20 @@
                 </div>
             <% end %>
     </div>
+    <% if admin? %>
+        <div class="form-group">
+            <%= f.label :supervisor_id, "Supervisor" %>
+            <%= f.collection_select :supervisor_id, User.admin, :id, :name, {prompt: "Supervisor Unassigned"}, {class: "form-select"}%>
+        </div>
+        <div class="form-group">
+            <%= f.label :department_id, "Department" %>
+            <%= f.collection_select :department_id, Department.all, :id, :name, {prompt: "Department Unassigned"}, {class: "form-select"}%>
+        </div>
+    <% end %>
     <div class="form-group">
         <%= f.submit submit_text, class: "btn btn-primary mt-3" %>
+    </div>
+    <div class="form-group">
+         <%= button_to "Delete Account", @user, method: "Delete", class: "btn btn-danger mt-1" %>
     </div>
 <% end %>

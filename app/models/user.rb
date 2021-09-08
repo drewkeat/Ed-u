@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :name, :email, presence: true
   #scopes
   scope :facilitators, ->{where(access: "facilitator")}
-
+  scope :admin, ->{where(access: "admin")}
   private
 
 end
