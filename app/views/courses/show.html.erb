@@ -1,7 +1,17 @@
-<h1><%= @course.name %></h1>
+<div class="row align-items-center">
+    <div class="col">
+        <h1><%= @course.name %></h1>
+    </div>
+    <div class="col d-flex justify-content-md-end">
+        <!-- insert applicable buttons here-->
+    </div>
+</div>
 <hr>
+    <% if admin? || own?(@course.facilitator)%>
+        <h3>Course Status: <i class="<%= @course.status == "approved"? "text-success" : "text-danger" %>"><%=@course.status.titleize%></i></h3>
+    <% end %>
 <div class="card">
-    <div class="card-header">
+    <div class="card-header text-white bg-primary">
         <div class="row">
             <div class="col">
                 <b>Facilitator:</b>
@@ -19,11 +29,14 @@
 </div>
 <hr>
 <% if admin? || own?(@course.facilitator) %>
-    <h3>Course Status: <i><%=@course.status%></i></h3>
+    <%= form_with model:@course do |f| %>
     <h2>Roster:</h2>
-    <ul>
-        <% @course.learners.each do |learner| %>
-            <li><%= link_to learner.name, learner %></li>
+        <div class="form-group"><%= f.submit "Confirm Attendance", class: "btn btn-primary" %></div>
+        <%= f.collection_check_boxes :learner_ids, @course.learners, :id, :name do |box| %>
+             <div class="form-check">
+                <%= box.check_box class: "form-check-input" %>
+                <%= box.label class: "form-check-label" %>
+            </div>
         <% end %>
-    </ul>
+    <% end %>
 <% end %>
