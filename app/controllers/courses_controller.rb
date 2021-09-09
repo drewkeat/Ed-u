@@ -14,6 +14,11 @@ class CoursesController < ApplicationController
         end
     end
 
+    def past
+        @courses = Course.past
+        render 'index'
+    end
+
     def new
         @course = Course.new
     end
