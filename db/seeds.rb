@@ -93,10 +93,11 @@ def enroll_learners
 end
 
 def approve_some_upcoming_courses
-    Course.upcoming.sample.status = "1"
-    Course.upcoming.sample.status = "1"
-    Course.upcoming.sample.status = "1"
-    Course.upcoming.sample.status = "1"
+    Course.upcoming.count/3.times do 
+        c = Course.upcoming.sample
+        c.status = "1"
+        c.save
+    end
 end
 
 create_departments(3)
