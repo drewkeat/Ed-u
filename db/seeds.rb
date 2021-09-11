@@ -6,94 +6,89 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-def create_users
-    @admin1 = User.create(
-        name: "Administrator1",
-        email: "admin1@email.com",
-        password: "password",
-        access: "admin"
-    )
-
-    @admin2 = User.create(
-        name: "Administrator2",
-        email: "admin2@email.com",
-        password: "password",
-        access: "admin"
-    )
-
-    @admin3 = User.create(
-        name: "Administrator3",
-        email: "admin3@email.com",
-        password: "password",
-        access: "admin"
-    )
-
-    @f1 = User.create(
-        name: "Facilitator1",
-        email: "facilitator1@email.com",
-        password: "password",
-        access: "facilitator"
-    )
-
-    @f2 = User.create(
-        name: "Facilitator2",
-        email: "facilitator2@email.com",
-        password: "password",
-        access: "facilitator"
-    )
-
-   @f3 = User.create(
-        name: "Facilitator3",
-        email: "facilitator3@email.com",
-        password: "password",
-        access: "facilitator"
-    )
-
-    @l1 = User.create(
-        name: "Learner1",
-        email: "learner1@email.com",
-        password: "password",
-        access: "learner"
-    )
-
-    @l2 = User.create(
-        name: "Learner2",
-        email: "learner2@email.com",
-        password: "password",
-        access: "learner"
-    )
-
-    @l3 = User.create(
-        name: "Learner3",
-        email: "learner3@email.com",
-        password: "password",
-        access: "learner"
-    )
+def create_departments(number)
+    i = 1
+    number.times do
+        department = Department.create(name: "Department #{i}")
+        department.staff << create_staff(i)
+        build_courses(department)
+        enroll_learners
+        i += 1
+    end
 end
 
-def create_courses
-    start_time = Time.now + 10.days
-    @c1 = Course.create(name: "Course One", description: Faker::Lorem.sentences(number: rand(1..10)).join(" "), start_time: start_time , end_time: start_time + rand(60..120).minutes)
-    start_time = Time.now - 10.days
-    @c2 = Course.create(name: "Course Two", description: Faker::Lorem.sentences(number: rand(1..10)).join(" "), start_time: start_time , end_time: start_time + rand(60..120).minutes)
-     start_time = Time.now + 3.days
-    @c3 = Course.create(name: "Course Three", description: Faker::Lorem.sentences(number: rand(1..10)).join(" "), start_time: start_time, end_time: start_time + rand(60..120).minutes)
+def create_staff(i)
+        a = 2*i-1
+        f = 4*i-3
+        l = 8*i-7
+        staff = []
+    2.times do
+        name = "Administrator#{a}"
+        admin = User.create(
+            name: name,
+            email: name.downcase+"@email.com",
+            password: "password",
+            access: "admin"
+        )
+        staff << admin
+        2.times do
+            name = "Facilitator#{f}"
+            fac = User.create(
+                name: name,
+                email: name.downcase.split(" ").join(".")+"@email.com",
+                password: "password",
+                access: "facilitator"
+            )
+            fac.supervisor = admin
+            fac.save
+            staff << fac
+            f += 1
+        end
+        a += 1
+    end
+    8.times do 
+        name = "Learner#{l}"
+        User.create(
+            name: name,
+            email: name.downcase+"@email.com",
+            password: "password"
+        )
+        l += 1
+    end
+    return staff
+end
 
-    @f1.courses << @c1
-    @f2.courses << @c2
-    @f3.courses << @c3
-
-    @f1.save
-    @f2.save
-    @f3.save
+def build_courses(department)
+    facilitators = department.staff.facilitators
+    facilitators.each do |fac|
+    course_lengths = [0.5, 0.75, 1, 1.5, 2, 2.5, 3]
+        fac.courses.build(
+            name: Faker::Educator.course_name,
+            description: Faker::Lorem.sentences(number: rand(5..15)).join(" "),
+            start_time: start = Time.now + rand(5..10).days,
+            end_time: start + course_lengths.sample.hours
+        )
+        fac.courses.build(
+            name: Faker::Educator.course_name,
+            description: Faker::Lorem.sentences(number: rand(5..15)).join(" "),
+            start_time: start = Time.now - rand(5..10).days,
+            end_time: start + course_lengths.sample.hours,
+            status: "1"
+        )
+        fac.save
+    end
 end
 
 def enroll_learners
-    @l1.enrollments << [@c1, @c2]
-    @l2.enrollments << [@c2, @c3]
-    @l3.enrollments << [@c1, @c3]
+    User.learners.each do |l|
+        l.registrations.build(course_id: Course.upcoming.sample.id)
+        l.registrations.build(course_id: Course.past.sample.id)
+        l.save
+        l.enrollments.past.each do |course|
+            course.reviews.build(reviewer_id: l.id, content: Faker::Lorem.sentences(number: rand(5..15)).join(" "))
+            course.save
+        end
+    end
 end
 
-create_users
-create_courses
-enroll_learners
+create_departments(3)

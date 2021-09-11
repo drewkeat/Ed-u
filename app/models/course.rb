@@ -3,6 +3,7 @@ class Course < ApplicationRecord
     has_many :registrations
     has_many :learners, through: :registrations, source: :learner
     has_many :reviews, as: :reviewable
+    validates :name, uniqueness: true
     scope :upcoming, -> {where('start_time >= ?', Time.now).order(:start_time)}
     scope :past, -> {where('start_time <= ?', Time.now)}
     scope :facilitations, ->(user) {where('facilitator_id = ?', user.id)}

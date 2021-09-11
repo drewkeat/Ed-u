@@ -16,6 +16,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :name, :email, presence: true
   #scopes
+  scope :learners, ->{where(access: "learner")}
   scope :facilitators, ->{where(access: "facilitator")}
   scope :admin, ->{where(access: "admin")}
   private
