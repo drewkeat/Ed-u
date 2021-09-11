@@ -48,5 +48,5 @@
     </div>
 <% end %>
     <div class="form-group">
-         <%= button_to "Delete Account", @user, method: "Delete", class: "btn btn-danger mt-1" %>
+         <%= button_to "Delete Account", {action: "destroy", id: @user.id}, method: "delete", class: "btn btn-danger mt-1" %>
     </div>
