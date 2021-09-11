@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   
   get '/auth/:provider/callback', to: 'sessions#omniauth'
 
-  delete 'logout', to: 'sessions#destroy'
+  delete 'logout', to: 'sessions#destroy', as: 'logout'
+
   resources :users do
     resources :reviews, only: [:index, :new, :create]
     resources :courses, only: [:index, :new, :create]
@@ -14,8 +15,9 @@ Rails.application.routes.draw do
   resources :courses do
     resources :reviews, only: [:index, :new, :create]
   end
+  
   resources :registrations, only: [:create, :destroy]
-  resources :reviews
+
   scope '/admin' do
     resources :departments
     resources :users, only: [:index], as: 'admin_users'
