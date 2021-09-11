@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root to: 'sessions#home'
   post 'login', to: 'sessions#create'
+  
+  get '/auth/:provider/callback', to: 'sessions#omniauth'
+
   delete 'logout', to: 'sessions#destroy'
   resources :users do
     resources :reviews, only: [:index, :new, :create]

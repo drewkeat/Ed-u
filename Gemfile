@@ -33,7 +33,7 @@ gem 'bootstrap'
 
 #OmniAuth
 gem 'omniauth'
-gem 'omniauth-google'
+gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
 group :development, :test do

@@ -12,7 +12,9 @@
         </div>
         <div>
             <%= f.submit 'Login', {url: login_path, class: "btn btn-primary mt-2"}%>
-            <%= link_to "Create Account", new_user_path, class: "btn btn-primary mt-2" %>
+            <%= link_to "Create Account", new_user_path, class: "btn btn-primary mt-2" %> <br>
+            or
         </div>
     <% end %>
+            <%= button_to "Login with Google", '/auth/google_oauth2', class: "btn btn-success" %>
 </div>
