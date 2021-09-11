@@ -26,7 +26,7 @@ Confirm:
 ---
 ## Narrative
 
-Ed-u is a catalog of courses and sessions for professional development.  Users create an account and are assigned one of three types; learner, facilitator, or admin.  Learners can browse the catalog and register for courses.  Facilitators can create courses with a "pending approval" status, view course registrations, and view personal and course reviews.  Admin can approve proposed courses, and view course and subordinate facilitator reviews.
+Ed-U is a catalog of courses and sessions for professional development.  Users create an account and are assigned one of three types; learner, facilitator, or admin.  Learners can browse the catalog and register for courses.  Facilitators can create courses with a "pending approval" status, view course registrations, and view personal and course reviews.  Admin can approve proposed courses, and view course and subordinate facilitator reviews.
 
 ---
 ## Routes and Experience
