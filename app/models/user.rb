@@ -19,6 +19,4 @@ class User < ApplicationRecord
   scope :learners, ->{where(access: "learner")}
   scope :facilitators, ->{where(access: "facilitator")}
   scope :admin, ->{where(access: "admin")}
-  private
-
 end
