@@ -8,6 +8,7 @@ class Course < ApplicationRecord
     scope :past, -> {where('start_time <= ?', Time.now)}
     scope :facilitations, ->(user) {where('facilitator_id = ?', user.id)}
     scope :approved, -> {where('status = ?', "approved")}
+    scope :pending, -> {where('status = ?', "pending")}
     before_save :convert_status
 
     def convert_status

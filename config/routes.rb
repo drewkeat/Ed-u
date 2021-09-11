@@ -10,8 +10,7 @@ Rails.application.routes.draw do
     resources :courses, only: [:index, :new, :create]
   end
   
-  get 'courses/past', to: 'courses#past', as: 'past_courses'
-
+  
   resources :courses do
     resources :reviews, only: [:index, :new, :create]
   end
@@ -20,6 +19,8 @@ Rails.application.routes.draw do
   scope '/admin' do
     resources :departments
     resources :users, only: [:index], as: 'admin_users'
+    get 'courses/past', to: 'courses#past', as: 'past_courses'
+    get 'courses/pending', to: 'courses#pending', as: 'pending_courses'
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

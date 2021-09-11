@@ -19,6 +19,11 @@ class CoursesController < ApplicationController
         render 'index'
     end
 
+    def pending
+        @courses = Course.pending
+        render 'index'
+    end
+
     def new
         @course = Course.new
     end
