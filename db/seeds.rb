@@ -13,6 +13,7 @@ def create_departments(number)
         department.staff << create_staff(i)
         build_courses(department)
         enroll_learners
+        approve_some_upcoming_courses
         i += 1
     end
 end
@@ -89,6 +90,13 @@ def enroll_learners
             course.save
         end
     end
+end
+
+def approve_some_upcoming_courses
+    Course.upcoming.sample.status = "1"
+    Course.upcoming.sample.status = "1"
+    Course.upcoming.sample.status = "1"
+    Course.upcoming.sample.status = "1"
 end
 
 create_departments(3)
