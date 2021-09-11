@@ -29,3 +29,6 @@
     <% end %>
     <%= f.submit submit_text, class: "btn btn-primary mt-3" %>
 <% end %>
+<% if @course.id%>
+    <%= button_to "Delete", course_path(@course), method: :delete, class: "btn btn-danger mt-3" %>
+<% end %>
