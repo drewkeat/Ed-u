@@ -23,7 +23,11 @@
     <% if admin? %>
     <div class="form-group">
         <%= f.label :status, "Approved?" %>
-        <%= f.check_box :status %>
+        <% if @course.status == "approved" %>
+            <%= f.check_box :status, {checked: true} %>
+        <% else %>
+            <%= f.check_box :status, {checked: false} %>    
+        <% end %>
     </div>
     <!-- -->
     <% end %>

@@ -12,9 +12,9 @@ class Course < ApplicationRecord
 
     def convert_status
         case self.status
-            when "1"
+            when "1", "approved"
                 self.status = "approved"
-            when "0"
+            when "0", "denied"
                 self.status = "denied"
             else
                 self.status = "pending"
