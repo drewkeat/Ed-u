@@ -9,6 +9,7 @@
         </h1>
     </div>
     <div class="col d-flex justify-content-md-end">
+        <%= link_to("Pending Courses", pending_courses_path, class: "btn btn-primary ms-1") if admin? %>
         <% if admin? || facilitator? %>
           <%= link_to "Create a Course", new_course_path, class: "btn btn-primary ms-1" %>
         <% end %>
@@ -21,15 +22,26 @@
       <th scope="col">Title</th>
       <th scope="col">Description</th>
       <th scope="col">Facilitator</th>
+      <% if admin? %> 
+      <th scope ="col">Status</th>
+      <% end %>
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
   <% @courses.each do |course|%>
-    <tr>
+    <tr class="<%='bg-warning' if course.status == "pending" %>">
       <th scope="row" class="text-center"><%=link_to course.name, course%></th>
       <td><%=course.description%></td>
       <td class="text-center"><%=course.facilitator.name%></td>
+      <% if admin? %>
+      <td class="text-center">
+        <%= form_with model: course do |f| %>
+          <%= f.select(:status, [["Approved","approved"],["Denied","denied"],["Pending","pending"]], {prompt: course.status.titleize}, {class: "form-select"})%>
+          <%= f.submit "Update Status", class: "btn btn-primary mt-2" %>
+        <% end %>
+      </td>
+      <% end %>
       <td class="text-center">
       <% if !own?(course.facilitator) %>
         <%= button_to "Register", registrations_path, params: {registration:{course_id: course.id, learner_id: current_user.id}}, class: "btn btn-primary"  %>

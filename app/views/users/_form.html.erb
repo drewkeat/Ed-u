@@ -33,7 +33,7 @@
                 </div>
             <% end %>
     </div>
-    <% if admin? %>
+    <% if logged_in? && admin? %>
         <div class="form-group">
             <%= f.label :supervisor_id, "Supervisor" %>
             <%= f.collection_select :supervisor_id, User.admin, :id, :name, {prompt: "Supervisor Unassigned"}, {class: "form-select"}%>
@@ -51,6 +51,8 @@
         <%= f.submit submit_text, class: "btn btn-primary mt-3" %>
     </div>
 <% end %>
+    <% if logged_in? %>
     <div class="form-group">
          <%= button_to "Delete Account", {action: "destroy", id: @user.id}, method: "delete", class: "btn btn-danger mt-1" %>
     </div>
+    <% end %>
