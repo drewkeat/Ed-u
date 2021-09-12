@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :reviews, only: [:index, :new, :create]
   end
   
+  resources :reviews, only: [:index, :create]
+
   resources :registrations, only: [:create, :destroy]
 
   scope '/admin' do
