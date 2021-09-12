@@ -27,4 +27,5 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 Project demo:
 [Video Walkthrough](https://youtu.be/Q2wzUF_72Q0)
-[Associated Blog](link_to_come)
+
+[Associated Blog](https://drewjkeat.medium.com/rails-user-authorizations-12d9b3659636)
