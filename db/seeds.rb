@@ -67,13 +67,13 @@ def build_courses(department)
             name: Faker::Educator.course_name,
             description: Faker::Lorem.sentences(number: rand(5..15)).join(" "),
             start_time: start = Time.now + rand(5..10).days,
-            end_time: start + course_lengths.sample.hours
+            end_time: start + course_lengths[rand(course_lengths.length)].hours
         )
         fac.courses.build(
             name: Faker::Educator.course_name,
             description: Faker::Lorem.sentences(number: rand(5..15)).join(" "),
             start_time: start = Time.now - rand(5..10).days,
-            end_time: start + course_lengths.sample.hours,
+            end_time: start + course_lengths[rand(course_lengths.length)].hours,
             status: "1"
         )
         fac.save
@@ -82,8 +82,8 @@ end
 
 def enroll_learners
     User.learners.each do |l|
-        l.registrations.build(course_id: Course.upcoming.sample.id)
-        l.registrations.build(course_id: Course.past.sample.id)
+        l.registrations.build(course_id: Course.upcoming[rand(Course.upcoming.length)].id)
+        l.registrations.build(course_id: Course.past[rand(Course.past.length)].id)
         l.save
         l.enrollments.past.each do |course|
             course.reviews.build(reviewer_id: l.id, content: Faker::Lorem.sentences(number: rand(5..15)).join(" "))
@@ -94,7 +94,7 @@ end
 
 def approve_some_upcoming_courses
     Course.upcoming.count/3.times do 
-        c = Course.upcoming.sample
+        c = Course.upcoming[rand(Course.upcoming.length)]
         c.status = "1"
         c.save
     end
