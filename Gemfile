@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+ruby '3.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
@@ -55,6 +55,7 @@ group :development do
   gem 'spring'
   # Rspec Testing
   gem 'rspec-rails'
+  gem 'net-smtp'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
