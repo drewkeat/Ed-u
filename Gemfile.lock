@@ -116,6 +116,8 @@ GEM
     nokogiri (1.13.8)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
+    nokogiri (1.13.8-arm64-darwin)
+      racc (~> 1.4)
     oauth2 (2.0.9)
       faraday (>= 0.17.3, < 3.0)
       jwt (>= 1.0, < 3.0)
@@ -245,6 +247,7 @@ GEM
 
 PLATFORMS
   -darwin-20
+  arm64-darwin-22
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
@@ -270,7 +273,7 @@ DEPENDENCIES
   webpacker (~> 5.0)
 
 RUBY VERSION
-   ruby 2.6.1p33
+   ruby 3.0.0p0
 
 BUNDLED WITH
-   2.2.31
+   2.4.5
