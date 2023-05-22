@@ -1,6 +1,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  #comment out host and credentials to host locally
   host: db
   username: postgres
   password: password
